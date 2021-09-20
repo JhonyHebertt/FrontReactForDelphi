@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Api from '../../services/api';
@@ -15,11 +16,10 @@ export default function List() {
     async function fCarregandoUsers() {
         const listaUser = await Api.get('users');
         //console.log(listaUser.data);
-        //'<HTML><BODY><B>200 OK</B></BODY></HTML>')
+
         if (Array.isArray(listaUser.data)) {
             setUsuarios(listaUser.data)
         }
-
     }
 
     function fDelete(id) {
@@ -31,13 +31,13 @@ export default function List() {
     }
 
     return (
-        <div>
+        <div className="col-sm-12">
             <h2>Lista de usuarios ({usuarios.length})</h2>
             <br />
             <div className="row">
-                <Link to="users/new" className="btn btn-success">
-                    Novo Usuário
-                </Link>
+                <div className="col-sm-12">
+                    <Link to="users/new" className="btn btn-success"> Novo Usuário </Link>
+                </div>
             </div>
             <br />
 

@@ -2,24 +2,28 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Api from '../../services/api';
 
-export default function Edit(props) {
+export default function Form(props) {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState(1);
-
+    const [insert, setInsert] = useState(false);
     const { id } = props.match.params;
     const voltar = useHistory();
 
     useEffect(() => {
-        async function fCarregandoUser() {
-            const User = await Api.get(`users/${id}`);
-            setUserName(User.data.USERNAME);
-            setPassword(User.data.PASSWORD);
-            setStatus(User.data.STATUS);
+        if (typeof id !== "undefined") {
+            async function fCarregandoUser() {
+                const User = await Api.get(`users/${id}`);
+                setUserName(User.data.USERNAME);
+                setPassword(User.data.PASSWORD);
+                setStatus(User.data.STATUS);
+            }
+            setInsert(false);
+            fCarregandoUser();
         }
+        else { setInsert(true); }
 
-        fCarregandoUser();
         return () => { }
 
     }, [id]);
@@ -30,11 +34,23 @@ export default function Edit(props) {
 
     async function fRegistrar(e) {
         e.preventDefault();
-        Api.put(`/users/${id}`, { id, userName, password, status })
-            .then((res) => {
-                console.log(res);
-                fVoltar();
-            })
+
+        if (insert !== false) {
+            Api.post('/users', { userName, password, status })
+                .then((res) => {
+                    console.log(res);
+                    fVoltar();
+                })
+                .catch((res) => { console.log(res) })
+        }
+        else {
+            Api.put(`/users/${id}`, { id, userName, password, status })
+                .then((res) => {
+                    console.log(res);
+                    fVoltar();
+                })
+                .catch((res) => { console.log(res) })
+        }
     }
 
     return (
