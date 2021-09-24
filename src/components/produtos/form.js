@@ -3,40 +3,44 @@ import { useHistory } from 'react-router-dom';
 import Api from '../../services/api';
 
 export default function Form(props) {
+    const [DESCRICAO, setDescricao] = useState('');
+    const [CATEGORIA, setCategoria] = useState('');
+    const [PRECO, setPreco] = useState('');
 
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
-    const [status, setStatus] = useState(1);
     const [insert, setInsert] = useState(false);
-    const { id } = props.match.params;
+    const { ID } = props.match.params;
     const voltar = useHistory();
 
     useEffect(() => {
-        if (typeof id !== "undefined") {
-            async function fCarregandoUser() {
-                const User = await Api.get(`users/${id}`);
-                setUserName(User.data.USERNAME);
-                setPassword(User.data.PASSWORD);
-                setStatus(User.data.STATUS);
+        if (typeof ID !== "undefined") {
+            async function fCarregandoProdutos() {
+                const produtos = await Api.get(`produtos/${ID}`);
+                setDescricao(produtos.data.DESCRICAO);
+                setCategoria(produtos.data.CATEGORIA);
+                setPreco(produtos.data.PRECO);
             }
             setInsert(false);
-            fCarregandoUser();
+            fCarregandoProdutos();
         }
         else { setInsert(true); }
 
         return () => { }
 
-    }, [id]);
+    }, [ID]);
 
     function fVoltar() {
-        voltar.push('/users');
+        voltar.push('/produtos');
     }
 
     async function fRegistrar(e) {
         e.preventDefault();
 
         if (insert !== false) {
-            Api.post('/users', { userName, password, status })
+            Api.post('/produtos', {
+                DESCRICAO,
+                CATEGORIA,
+                PRECO
+            })
                 .then((res) => {
                     console.log(res);
                     fVoltar();
@@ -44,7 +48,12 @@ export default function Form(props) {
                 .catch((res) => { console.log(res) })
         }
         else {
-            Api.put(`/users/${id}`, { id, userName, password, status })
+            Api.put(`/produtos/${ID}`, {
+                ID,
+                DESCRICAO,
+                CATEGORIA,
+                PRECO
+            })
                 .then((res) => {
                     console.log(res);
                     fVoltar();
@@ -58,19 +67,20 @@ export default function Form(props) {
             <form onSubmit={fRegistrar} autoComplete="false" >
 
                 <div className="form-group">
-                    <label >Nome</label>
-                    <input type="text" className="form-control" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Digite seu nome" autoComplete="false" />
+                    <label>DESCRICAO</label>
+                    <input type="text" name="DESCRICAO" value={DESCRICAO} onChange={(e) => setDescricao(e.target.value)} className="form-control" />
                 </div>
 
-                <div className="form-group">
-                    <label>Senha</label>
-                    <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Digite uma senha" autoComplete="false" />
-                </div>
 
                 <div className="form-group">
-                    <label>Status
-                        <input type="number" className="form-control" value={status} onChange={(e) => setStatus(e.target.value)} />
-                    </label>
+                    <label>CATEGORIA</label>
+                    <input type="text" name="CATEGORIA" value={CATEGORIA} onChange={(e) => setCategoria(e.target.value)} className="form-control" />
+                </div>
+
+
+                <div className="form-group">
+                    <label>PRECO</label>
+                    <input type="number" name="PRECO" value={PRECO} onChange={(e) => setPreco(e.target.value)} className="form-control" />
                 </div>
 
                 <button type="button" onClick={fVoltar} className="btn btn-danger" > Voltar</button>

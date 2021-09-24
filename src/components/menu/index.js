@@ -10,7 +10,15 @@ export default function menu() {
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" to="/users"> Usuários </Link>
+                    <Link className="nav-link" to="/categorias"> Categorias </Link>
+                </li>
+
+                <li className="nav-item">
+                    <Link className="nav-link" to="/produtos"> Produtos </Link>
+                </li>
+
+                <li className="nav-item">
+                    <Link className="nav-link" to="/usuarios"> Usuários </Link>
                 </li>
             </ul>
         </div>

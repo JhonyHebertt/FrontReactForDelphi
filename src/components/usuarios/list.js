@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Api from '../../services/api';
 
-
 export default function List() {
 
     const [usuarios, setUsuarios] = useState([]);
@@ -14,8 +13,8 @@ export default function List() {
     }, []);
 
     async function fCarregandoUsers() {
-        const listaUser = await Api.get('users');
-        //console.log(listaUser.data);
+        const listaUser = await Api.get('usuarios');
+        console.log(listaUser.data);
 
         if (Array.isArray(listaUser.data)) {
             setUsuarios(listaUser.data)
@@ -23,7 +22,7 @@ export default function List() {
     }
 
     function fDelete(id) {
-        Api.delete(`/users/${id}`)
+        Api.delete(`/usuarios/${id}`)
             .then((res) => {
                 console.log(res);
                 fCarregandoUsers();
@@ -36,7 +35,7 @@ export default function List() {
             <br />
             <div className="row">
                 <div className="col-sm-12">
-                    <Link to="users/new" className="btn btn-success"> Novo Usuário </Link>
+                    <Link to="usuarios/new" className="btn btn-success"> Novo Usuário </Link>
                 </div>
             </div>
             <br />
@@ -65,7 +64,7 @@ export default function List() {
                                         <td data-label="Nome">{user.USERNAME}</td>
                                         <td data-label="Status"> {user.STATUS} </td>
                                         <td>
-                                            <Link to={`/users/${user.ID}`} > <i className="fa fa-pencil" ></i></Link>
+                                            <Link to={`/usuarios/${user.ID}`} > <i className="fa fa-pencil" ></i></Link>
                                             <Link to={''} onClick={(d) => fDelete(user.ID)}> <i className="fa fa-trash" ></i> </Link>
                                         </td>
                                     </tr>
