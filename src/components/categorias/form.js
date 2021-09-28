@@ -19,7 +19,6 @@ export default function Form(props) {
             fCarregandoCategorias();
         }
         else { setInsert(true); }
-
         return () => { }
 
     }, [ID]);
@@ -57,14 +56,22 @@ export default function Form(props) {
     return (
         <div className="col-sm-12">
             <form onSubmit={fRegistrar} autoComplete="false" >
-
-                <div className="form-group">
-                    <label>Descrição</label>
-                    <input type="text" name="DESCRICAO" value={DESCRICAO} onChange={(e) => setDescricao(e.target.value)} className="form-control" />
+                <div className="row">
+                    <div className="col-sm-12">
+                        <div className="form-group">
+                            <label>Descrição</label>
+                            <input type="text" name="DESCRICAO" value={DESCRICAO} onChange={(e) => setDescricao(e.target.value)} className="form-control" autoFocus />
+                        </div>
+                    </div>
                 </div>
 
-                <button type="button" onClick={fVoltar} className="btn btn-danger" > Voltar</button>
-                <button type="submit" className="btn btn-primary">Gravar</button>
+                <div className="row">
+                    <div className="col-sm-6">
+                        <button type="button" onClick={fVoltar} className="btn btn-danger" > Voltar</button>
+                        &nbsp;&nbsp;
+                        <button type="submit" className="btn btn-success">Gravar</button>
+                    </div>
+                </div>
             </form>
         </div>
     )

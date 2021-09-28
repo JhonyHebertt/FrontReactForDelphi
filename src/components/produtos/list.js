@@ -53,7 +53,7 @@ export default function List() {
                             <tr>
                                 <th> ID </th>
                                 <th> Descrição </th>
-                                <th> categoria </th>
+                                <th> Categoria </th>
                                 <th> Preço </th>
                                 <th >Opções</th>
                             </tr>
@@ -64,7 +64,7 @@ export default function List() {
                                     <tr key={index}>
                                         <td> {produtos.ID}</td>
                                         <td> {produtos.DESCRICAO}</td>
-                                        <td> {produtos.CATEGORIA}</td>
+                                        <td> {produtos.CATEGORIA_DESCRICAO}</td>
                                         <td> {produtos.PRECO}</td>
                                         <td>
                                             <Link to={`/produtos/${produtos.ID}`} > <i className="fa fa-pencil" ></i></Link>

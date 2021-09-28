@@ -22,11 +22,11 @@ export default function Routes() {
 
             <Route exact path="/categorias" component={CategoriaList} />
             <Route exact path="/categorias/new" component={CategoriaForm} />
-            <Route exact path="/categorias/:id" component={CategoriaForm} />
+            <Route exact path="/categorias/:ID" component={CategoriaForm} />
 
             <Route exact path="/produtos" component={ProdutoList} />
             <Route exact path="/produtos/new" component={ProdutoForm} />
-            <Route exact path="/produtos/:id" component={ProdutoForm} />
+            <Route exact path="/produtos/:ID" component={ProdutoForm} />
 
             <Route exact path="/usuarios" component={UserList} />
             <Route exact path="/usuarios/new" component={UserForm} />
