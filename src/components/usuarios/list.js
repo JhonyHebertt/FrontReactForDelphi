@@ -14,7 +14,7 @@ export default function List() {
 
     async function fCarregandoUsers() {
         const listaUser = await Api.get('usuarios');
-        console.log(listaUser.data);
+        //console.log(listaUser.data);
 
         if (Array.isArray(listaUser.data)) {
             setUsuarios(listaUser.data)
@@ -24,7 +24,7 @@ export default function List() {
     function fDelete(id) {
         Api.delete(`/usuarios/${id}`)
             .then((res) => {
-                console.log(res);
+                //console.log(res);
                 fCarregandoUsers();
             })
     }

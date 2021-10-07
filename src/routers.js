@@ -1,6 +1,10 @@
 import react from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+/*LOGIN */
+import Login from './page/login';
+
+/* DASHBOARD */
 import Principal from './components/principal';
 
 /*CATEGORIAS */
@@ -14,23 +18,30 @@ import ProdutoForm from './components/produtos/form';
 /*USUARIOS*/
 import UserList from './components/usuarios/list';
 import UserForm from './components/usuarios/form';
+import UserRegister from './page/register';
+
+
+import PrivateRoute from './privateRoute';
 
 export default function Routes() {
     return (
         <Switch>
-            <Route exact path="/" component={Principal} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={UserRegister} />
 
-            <Route exact path="/categorias" component={CategoriaList} />
-            <Route exact path="/categorias/new" component={CategoriaForm} />
-            <Route exact path="/categorias/:ID" component={CategoriaForm} />
+            <PrivateRoute exact path="/" component={Principal} />
 
-            <Route exact path="/produtos" component={ProdutoList} />
-            <Route exact path="/produtos/new" component={ProdutoForm} />
-            <Route exact path="/produtos/:ID" component={ProdutoForm} />
+            <PrivateRoute exact path="/categorias" component={CategoriaList} />
+            <PrivateRoute exact path="/categorias/new" component={CategoriaForm} />
+            <PrivateRoute exact path="/categorias/:ID" component={CategoriaForm} />
 
-            <Route exact path="/usuarios" component={UserList} />
-            <Route exact path="/usuarios/new" component={UserForm} />
-            <Route exact path="/usuarios/:id" component={UserForm} />
+            <PrivateRoute exact path="/produtos" component={ProdutoList} />
+            <PrivateRoute exact path="/produtos/new" component={ProdutoForm} />
+            <PrivateRoute exact path="/produtos/:ID" component={ProdutoForm} />
+
+            <PrivateRoute exact path="/usuarios" component={UserList} />
+            <PrivateRoute exact path="/usuarios/new" component={UserForm} />
+            <PrivateRoute exact path="/usuarios/:ID" component={UserForm} />
         </Switch>
 
     )

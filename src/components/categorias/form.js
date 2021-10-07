@@ -35,7 +35,7 @@ export default function Form(props) {
                 DESCRICAO
             })
                 .then((res) => {
-                    console.log(res);
+                    //console.log(res);
                     fVoltar();
                 })
                 .catch((res) => { console.log(res) })
@@ -46,7 +46,7 @@ export default function Form(props) {
                 DESCRICAO
             })
                 .then((res) => {
-                    console.log(res);
+                    //console.log(res);
                     fVoltar();
                 })
                 .catch((res) => { console.log(res) })

@@ -1,26 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function menu() {
-    return (
-        <div className="sidebar-sticky pt-3">
-            <ul className="nav flex-column">
-                <li className="nav-item">
-                    <Link className="nav-link active" to="/"> Principal </Link>
-                </li>
+import { AuthContext } from '../../context/context';
 
-                <li className="nav-item">
-                    <Link className="nav-link" to="/categorias"> Categorias </Link>
-                </li>
+export default function Menu() {
+    const { logado } = useContext(AuthContext);
 
-                <li className="nav-item">
-                    <Link className="nav-link" to="/produtos"> Produtos </Link>
-                </li>
+    if (logado === true) {
+        return (
+            <div className="sidebar-sticky pt-3">
+                <ul className="nav flex-column">
+                    <li className="nav-item">
+                        <Link className="nav-link active" to="/"> Principal </Link>
+                    </li>
 
-                <li className="nav-item">
-                    <Link className="nav-link" to="/usuarios"> Usuários </Link>
-                </li>
-            </ul>
-        </div>
-    )
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/categorias"> Categorias </Link>
+                    </li>
+
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/produtos"> Produtos </Link>
+                    </li>
+
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/usuarios"> Usuários </Link>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+    else { return ('') }
 }

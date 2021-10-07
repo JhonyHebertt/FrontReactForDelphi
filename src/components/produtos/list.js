@@ -25,7 +25,7 @@ export default function List() {
     function fDelete(id) {
         Api.delete(`/produtos/${id}`)
             .then((res) => {
-                console.log(res);
+                //console.log(res);
                 fCarregandoProdutos();
             })
     }
