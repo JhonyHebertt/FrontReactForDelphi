@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import { AuthContext } from '../../context/context';
 
 
@@ -13,19 +15,40 @@ export default function Header() {
     }
 
     return (
-        <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a className="navbar-brand col-md-1 col-lg-2 mr-0 px-3" href="#">JHC Sistemas</a>
-            <button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+            <a className="navbar-brand col-md-1 col-lg-2 mr-0 px-3" href="/">JHC Sistemas</a>
+
+
+            <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            {/*<input className="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />*/}
-            <ul className="navbar-nav px-3">
-                <li className="nav-item text-nowrap">
-                    <span className="nav-link" >
-                        {logado ? <a onClick={fDeslogar}> Sair </a> : <a> </a>}
-                    </span>
-                </li>
-            </ul>
+
+            <div className="navbar-collapse collapse" id="navbarCollapse" >
+                <ul className="navbar-nav mr-auto px-3">
+                    <li className="nav-item active">
+                        {logado ? <Link className="nav-link active" to="/"> Principal </Link> : <p> </p>}
+                    </li>
+
+                    <li className="nav-item">
+                        {logado ? <Link className="nav-link" to="/categorias"> Categorias </Link> : <p> </p>}
+                    </li>
+
+                    <li className="nav-item">
+                        {logado ? <Link className="nav-link" to="/produtos"> Produtos </Link> : <p> </p>}
+                    </li>
+
+                    <li className="nav-item">
+                        {logado ? <Link className="nav-link" to="/usuarios"> Usuários </Link> : <p> </p>}
+                    </li>
+
+                    <li className="nav-item text-nowrap ">
+                        <span className="nav-link" >
+                            {logado ? <p onClick={fDeslogar}> Sair </p> : <p> </p>}
+                        </span>
+                    </li>
+                </ul>
+
+            </div>
         </nav>
     )
 }

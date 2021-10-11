@@ -1,0 +1,11 @@
+.divlogin{
+background: linear-gradient(to right, rgb(0, 242, 96), rgb(5, 117, 230));
+}
+
+.container-center{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+  }
