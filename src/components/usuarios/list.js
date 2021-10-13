@@ -46,9 +46,9 @@ export default function List() {
 
             ) : ( //se tiver usuario
                 <>
-                    <table className="table table-hover">
+                    <table className="table table-bordered table-hover">
                         <thead>
-                            <tr>
+                            <tr className="table-primary">
                                 <th scope="col">#</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Status</th>
@@ -59,10 +59,10 @@ export default function List() {
                             {usuarios.map((user, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td data-label="ID">{user.ID}</td>
-                                        <td data-label="Nome">{user.USERNAME}</td>
-                                        <td data-label="Status"> {user.STATUS} </td>
-                                        <td>
+                                        <td className="table-active" data-label="ID">{user.ID}</td>
+                                        <td className="table-active" data-label="Nome">{user.USERNAME}</td>
+                                        <td className="table-active" data-label="Status"> {user.STATUS} </td>
+                                        <td className="table-active" >
                                             <Link to={`/usuarios/${user.ID}`} > <i className="fa fa-pencil" ></i></Link>
                                             <Link to={''} onClick={(d) => fDelete(user.ID)}> <i className="fa fa-trash" ></i> </Link>
                                         </td>

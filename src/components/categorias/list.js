@@ -48,9 +48,9 @@ export default function List() {
 
             ) : ( //se tiver categorias
                 <>
-                    <table className="table table-hover">
+                    <table className="table table-bordered table-hover">
                         <thead>
-                            <tr>
+                            <tr className="table-primary">
                                 <th> ID </th>
                                 <th> Descrição </th>
                                 <th >Opções</th>
@@ -60,9 +60,9 @@ export default function List() {
                             {categorias.map((categorias, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td> {categorias.ID}</td>
-                                        <td> {categorias.DESCRICAO}</td>
-                                        <td>
+                                        <td className="table-active" > {categorias.ID}</td>
+                                        <td className="table-active"> {categorias.DESCRICAO}</td>
+                                        <td className="table-active">
                                             <Link to={`/categorias/${categorias.ID}`} > <i className="fa fa-pencil" ></i></Link>
                                             <Link to={''} onClick={(d) => fDelete(categorias.ID)}> <i className="fa fa-trash" ></i> </Link>
                                         </td>

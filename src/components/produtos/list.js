@@ -48,9 +48,9 @@ export default function List() {
 
             ) : ( //se tiver produtos
                 <>
-                    <table className="table table-hover">
+                    <table className="table table-bordered table-hover">
                         <thead>
-                            <tr>
+                            <tr className="table-primary">
                                 <th> ID </th>
                                 <th> Descrição </th>
                                 <th> Categoria </th>
@@ -62,11 +62,11 @@ export default function List() {
                             {produtos.map((produtos, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td> {produtos.ID}</td>
-                                        <td> {produtos.DESCRICAO}</td>
-                                        <td> {produtos.CATEGORIA_DESCRICAO}</td>
-                                        <td> {produtos.PRECO}</td>
-                                        <td>
+                                        <td className="table-active" > {produtos.ID}</td>
+                                        <td className="table-active" > {produtos.DESCRICAO}</td>
+                                        <td className="table-active" > {produtos.CATEGORIA_DESCRICAO}</td>
+                                        <td className="table-active" > {produtos.PRECO}</td>
+                                        <td className="table-active" >
                                             <Link to={`/produtos/${produtos.ID}`} > <i className="fa fa-pencil" ></i></Link>
                                             <Link to={''} onClick={(d) => fDelete(produtos.ID)}> <i className="fa fa-trash" ></i> </Link>
                                         </td>
