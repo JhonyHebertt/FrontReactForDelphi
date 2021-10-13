@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../context/context';
@@ -7,11 +7,17 @@ import auth from '../services/auth';
 import './login.css';
 
 export default function Login() {
-    const { setLogado } = useContext(AuthContext);
+    const { logado, setLogado } = useContext(AuthContext);
     const [USERNAME, setUserName] = useState('');
     const [PASSWORD, setPassword] = useState('');
     const principal = useHistory();
     const registrar = useHistory();
+
+    useEffect(() => {
+        if (logado === true) {
+            principal.push('/');
+        }
+    }, [logado, principal])
 
     function fLogar(e) {
         e.preventDefault();
@@ -20,7 +26,7 @@ export default function Login() {
                 //console.log(res);
                 localStorage.setItem("DelphiReactToken", res.data.token);
                 setLogado(true);
-                principal.push('/');
+                window.location.reload();
             })
             .catch((error) => {
                 //console.log(error);

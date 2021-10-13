@@ -35,7 +35,7 @@ export default function Form(props) {
 
         return () => { }
 
-    }, [ID]);
+    }, []);
 
     function fVoltar() {
         voltar.push('/produtos');
