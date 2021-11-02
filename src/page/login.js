@@ -21,7 +21,12 @@ export default function Login() {
 
     function fLogar(e) {
         e.preventDefault();
-        auth.post('/usuarios/auth', { USERNAME, PASSWORD })
+        auth.get('login', {
+            auth: {
+                username: USERNAME,
+                password: PASSWORD
+            }
+        })
             .then((res) => {
                 //console.log(res);
                 localStorage.setItem("DelphiReactToken", res.data.token);

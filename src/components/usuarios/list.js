@@ -59,12 +59,12 @@ export default function List() {
                             {usuarios.map((user, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td className="table-active" data-label="ID">{user.ID}</td>
-                                        <td className="table-active" data-label="Nome">{user.USERNAME}</td>
-                                        <td className="table-active" data-label="Status"> {user.STATUS} </td>
+                                        <td className="table-active" data-label="id">{user.id}</td>
+                                        <td className="table-active" data-label="Nome">{user.username}</td>
+                                        <td className="table-active" data-label="Status"> {user.status} </td>
                                         <td className="table-active" >
-                                            <Link to={`/usuarios/${user.ID}`} > <i className="fa fa-pencil" ></i></Link>
-                                            <Link to={''} onClick={(d) => fDelete(user.ID)}> <i className="fa fa-trash" ></i> </Link>
+                                            <Link to={`/usuarios/${user.id}`} > <i className="fa fa-pencil" ></i></Link>
+                                            <Link to={''} onClick={(d) => fDelete(user.id)}> <i className="fa fa-trash" ></i> </Link>
                                         </td>
                                     </tr>
                                 )

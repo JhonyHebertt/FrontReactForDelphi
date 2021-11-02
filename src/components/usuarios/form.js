@@ -4,20 +4,20 @@ import Api from '../../services/api';
 
 export default function Form(props) {
 
-    const [USERNAME, setUserName] = useState('');
+    const [username, setUserName] = useState('');
     const [PASSWORD, setPassword] = useState('');
-    const [STATUS, setStatus] = useState(1);
+    const [status, setStatus] = useState(1);
     const [insert, setInsert] = useState(false);
-    const { ID } = props.match.params;
+    const { id } = props.match.params;
     const voltar = useHistory();
 
     useEffect(() => {
-        if (typeof ID !== "undefined") {
+        if (typeof id !== "undefined") {
             async function fCarregandoUser() {
-                const User = await Api.get(`usuarios/${ID}`);
-                setUserName(User.data.USERNAME);
+                const User = await Api.get(`usuarios/${id}`);
+                setUserName(User.data.username);
                 setPassword(User.data.PASSWORD);
-                setStatus(User.data.STATUS);
+                setStatus(User.data.status);
             }
             setInsert(false);
             fCarregandoUser();
@@ -26,7 +26,7 @@ export default function Form(props) {
 
         return () => { }
 
-    }, [ID]);
+    }, [id]);
 
     function fVoltar() {
         voltar.push('/usuarios');
@@ -37,9 +37,9 @@ export default function Form(props) {
 
         if (insert !== false) {
             Api.post('/usuarios', {
-                USERNAME,
+                username,
                 PASSWORD,
-                STATUS
+                status
             })
                 .then((res) => {
                     //console.log(res);
@@ -48,11 +48,12 @@ export default function Form(props) {
                 .catch((res) => { console.log(res) })
         }
         else {
-            Api.put(`/usuarios/${ID}`, {
-                ID,
-                USERNAME,
+            //Api.put(`/usuarios/${id}`, {
+            Api.put(`/usuarios/${id}`, {
+                id,
+                username,
                 PASSWORD,
-                STATUS
+                status
             })
                 .then((res) => {
                     //console.log(res);
@@ -69,7 +70,7 @@ export default function Form(props) {
                     <div className="col-sm-6">
                         <div className="form-group">
                             <label >Nome</label>
-                            <input type="text" className="form-control" value={USERNAME} onChange={(e) => setUserName(e.target.value)} placeholder="Digite seu nome" autoComplete="false" autoFocus />
+                            <input type="text" className="form-control" value={username} onChange={(e) => setUserName(e.target.value)} placeholder="Digite seu nome" autoComplete="false" autoFocus />
                         </div>
                     </div>
                     <div className="col-sm-6">
@@ -83,7 +84,7 @@ export default function Form(props) {
                     <div className="col-sm-6">
                         <div className="form-group">
                             <label>Status
-                                <input type="number" className="form-control" value={STATUS} onChange={(e) => setStatus(e.target.value)} />
+                                <input type="number" className="form-control" value={status} onChange={(e) => setStatus(e.target.value)} />
                             </label>
                         </div>
                     </div>

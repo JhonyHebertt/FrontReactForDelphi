@@ -60,11 +60,11 @@ export default function List() {
                             {categorias.map((categorias, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td className="table-active" > {categorias.ID}</td>
-                                        <td className="table-active"> {categorias.DESCRICAO}</td>
+                                        <td className="table-active" > {categorias.id}</td>
+                                        <td className="table-active"> {categorias.descricao}</td>
                                         <td className="table-active">
-                                            <Link to={`/categorias/${categorias.ID}`} > <i className="fa fa-pencil" ></i></Link>
-                                            <Link to={''} onClick={(d) => fDelete(categorias.ID)}> <i className="fa fa-trash" ></i> </Link>
+                                            <Link to={`/categorias/${categorias.id}`} > <i className="fa fa-pencil" ></i></Link>
+                                            <Link to={''} onClick={(d) => fDelete(categorias.id)}> <i className="fa fa-trash" ></i> </Link>
                                         </td>
                                     </tr>
                                 )

@@ -3,17 +3,17 @@ import { useHistory } from 'react-router-dom';
 import Api from '../../services/api';
 
 export default function Form(props) {
-    const [DESCRICAO, setDescricao] = useState('');
+    const [descricao, setDescricao] = useState('');
 
     const [insert, setInsert] = useState(false);
-    const { ID } = props.match.params;
+    const { id } = props.match.params;
     const voltar = useHistory();
 
     useEffect(() => {
-        if (typeof ID !== "undefined") {
+        if (typeof id !== "undefined") {
             async function fCarregandoCategorias() {
-                const categorias = await Api.get(`categorias/${ID}`);
-                setDescricao(categorias.data.DESCRICAO);
+                const categorias = await Api.get(`categorias/${id}`);
+                setDescricao(categorias.data.descricao);
             }
             setInsert(false);
             fCarregandoCategorias();
@@ -21,7 +21,7 @@ export default function Form(props) {
         else { setInsert(true); }
         return () => { }
 
-    }, [ID]);
+    }, [id]);
 
     function fVoltar() {
         voltar.push('/categorias');
@@ -32,7 +32,7 @@ export default function Form(props) {
 
         if (insert !== false) {
             Api.post('/categorias', {
-                DESCRICAO
+                descricao
             })
                 .then((res) => {
                     //console.log(res);
@@ -41,9 +41,10 @@ export default function Form(props) {
                 .catch((res) => { console.log(res) })
         }
         else {
-            Api.put(`/categorias/${ID}`, {
-                ID,
-                DESCRICAO
+            //Api.put(`/categorias/${id}`, {
+            Api.put(`/categorias/`, {
+                id,
+                descricao
             })
                 .then((res) => {
                     //console.log(res);
@@ -60,7 +61,7 @@ export default function Form(props) {
                     <div className="col-sm-12">
                         <div className="form-group">
                             <label>Descrição</label>
-                            <input type="text" name="DESCRICAO" value={DESCRICAO} onChange={(e) => setDescricao(e.target.value)} className="form-control" autoFocus />
+                            <input type="text" name="descricao" value={descricao} onChange={(e) => setDescricao(e.target.value)} className="form-control" autoFocus />
                         </div>
                     </div>
                 </div>

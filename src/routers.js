@@ -32,15 +32,15 @@ export default function Routes() {
 
             <PrivateRoute exact path="/categorias" component={CategoriaList} />
             <PrivateRoute exact path="/categorias/new" component={CategoriaForm} />
-            <PrivateRoute exact path="/categorias/:ID" component={CategoriaForm} />
+            <PrivateRoute exact path="/categorias/:id" component={CategoriaForm} />
 
             <PrivateRoute exact path="/produtos" component={ProdutoList} />
             <PrivateRoute exact path="/produtos/new" component={ProdutoForm} />
-            <PrivateRoute exact path="/produtos/:ID" component={ProdutoForm} />
+            <PrivateRoute exact path="/produtos/:id" component={ProdutoForm} />
 
             <PrivateRoute exact path="/usuarios" component={UserList} />
             <PrivateRoute exact path="/usuarios/new" component={UserForm} />
-            <PrivateRoute exact path="/usuarios/:ID" component={UserForm} />
+            <PrivateRoute exact path="/usuarios/:id" component={UserForm} />
         </Switch>
 
     )
