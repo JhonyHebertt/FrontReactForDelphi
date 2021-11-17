@@ -4,7 +4,7 @@ import Api from '../services/api';
 
 export default function Form(props) {
 
-    const [userName, setUserName] = useState('');
+    const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const status = 1;
 
@@ -16,11 +16,11 @@ export default function Form(props) {
 
     async function fRegistrar(e) {
         e.preventDefault();
-        //console.log(userName, password, status);
+        //console.log(username, password, status);
         Api.post('/usuarios', {
-            "USERNAME": userName,
-            "PASSWORD": password,
-            "STATUS": status
+            username,
+            password,
+            status
         })
             .then((res) => {
                 //console.log(res);
@@ -38,7 +38,7 @@ export default function Form(props) {
                         <div className="col-sm-12">
                             <div className="form-group">
                                 <label >Nome</label>
-                                <input type="text" className="form-control" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Digite seu nome" autoComplete="false" autoFocus />
+                                <input type="text" className="form-control" value={username} onChange={(e) => setUserName(e.target.value)} placeholder="Digite seu nome" autoComplete="false" autoFocus />
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ import Api from '../../services/api';
 export default function Form(props) {
 
     const [username, setUserName] = useState('');
-    const [PASSWORD, setPassword] = useState('');
+    const [password, setPassword] = useState('');
     const [status, setStatus] = useState(1);
     const [insert, setInsert] = useState(false);
     const { id } = props.match.params;
@@ -16,7 +16,7 @@ export default function Form(props) {
             async function fCarregandoUser() {
                 const User = await Api.get(`usuarios/${id}`);
                 setUserName(User.data.username);
-                setPassword(User.data.PASSWORD);
+                setPassword(User.data.password);
                 setStatus(User.data.status);
             }
             setInsert(false);
@@ -38,7 +38,7 @@ export default function Form(props) {
         if (insert !== false) {
             Api.post('/usuarios', {
                 username,
-                PASSWORD,
+                password,
                 status
             })
                 .then((res) => {
@@ -52,7 +52,7 @@ export default function Form(props) {
             Api.put(`/usuarios/${id}`, {
                 id,
                 username,
-                PASSWORD,
+                password,
                 status
             })
                 .then((res) => {
@@ -70,13 +70,13 @@ export default function Form(props) {
                     <div className="col-sm-6">
                         <div className="form-group">
                             <label >Nome</label>
-                            <input type="text" className="form-control" value={username} onChange={(e) => setUserName(e.target.value)} placeholder="Digite seu nome" autoComplete="false" autoFocus />
+                            <input type="text" className="form-control" value={username} onChange={(e) => setUserName(e.target.value)} placeholder="Digite seu nome" autoComplete="false" required autoFocus />
                         </div>
                     </div>
                     <div className="col-sm-6">
                         <div className="form-group">
                             <label>Senha</label>
-                            <input type="password" className="form-control" value={PASSWORD} onChange={(e) => setPassword(e.target.value)} placeholder="Digite uma senha" autoComplete="false" />
+                            <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Digite uma senha" autoComplete="false" required  />
                         </div>
                     </div>
                 </div>

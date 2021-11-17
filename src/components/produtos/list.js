@@ -64,7 +64,7 @@ export default function List() {
                                     <tr key={index}>
                                         <td className="table-active" > {produtos.id}</td>
                                         <td className="table-active" > {produtos.descricao}</td>
-                                        <td className="table-active" > {produtos.categoria_descricao}</td>
+                                        <td className="table-active" > {produtos.categoriaDescricao}</td>
                                         <td className="table-active" > {produtos.preco}</td>
                                         <td className="table-active" >
                                             <Link to={`/produtos/${produtos.id}`} > <i className="fa fa-pencil" ></i></Link>
